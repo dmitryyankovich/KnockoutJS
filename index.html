@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet"  href="site.css" type="text/css">
+    <script src="Alert/jquery.js"></script>
+    <script src="Alert/jquery.ui.draggable.js"></script>
+    <script src="Alert/jquery.alerts.js"></script>
+    <link rel="stylesheet" href="Alert/jquery.alerts.css">
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="knockout-3.1.0.js"></script>
+    <script src="knockout.mapping-latest.js"></script>
+</head>
+<body>
+<div class="table">
+    <table width="100%">
+        <thead>
+        <tr>
+            <th class="checkboxHeader"><input data-bind="checked: AllChecked, click: switchAll" type="checkbox" /></th>
+            <th class="imagesHeader">Photo</th>
+            <th class="dishHeader">Dish</th>
+            <th class="categoryHeader">Category</th>
+            <th class="priceHeader price">Price</th>
+            <th class="quantityHeader quantity">Quantity</th>
+            <th class="subtotalHeader price">Subtotal</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: dish">
+        <tr data-bind="attr: {class: isChecked() ? 'selected' : ''}">
+            <td><input data-bind="checked: isChecked" type="checkbox" /></td>
+            <td class="images">
+                <img data-bind="src: photo">
+            </td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: category"></td>
+            <td class="price" data-bind="text: $parent.formatCurrency(price())"></td>
+            <td class="quantity">
+                <input class="subtotal" data-bind="value: quantity" />
+            </td>
+            <td class="price" data-bind="text: $parent.formatCurrency(subTotal())"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="grandTotal">
+        Total value: <span data-bind="text: formatCurrency(total())"> </span>
+    </p>
+    <button data-bind="click: save">Submit order</button>
+</div>
+</body>
+<script src="Cart.js"></script>
+</html>
